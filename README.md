@@ -69,7 +69,5 @@ Make sure you have Node.js and Angular CLI installed on your machine.
 5.  Open your browser at `http://localhost:4200/`.
 
 ## 👋 Connect with Me 🐱
-<p align="center">
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/devpnascimento/)
-</p>
 ---
