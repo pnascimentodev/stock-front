@@ -1,59 +1,75 @@
-# StockFront
+# 📦 Stock Control - Modern Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.12.
+[![Angular](https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white)](https://angular.io/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![Font Awesome](https://img.shields.io/badge/Font%20Awesome-528DD7?style=for-the-badge&logo=font-awesome&logoColor=white)](https://fontawesome.com/)
 
-## Development server
+A modern frontend project to manage a simple stock control system, developed with Angular. This project focuses on a clean, intuitive, and responsive user interface, simulating operations of a stock management system.
 
-To start a local development server, run:
+**Key Features (Mocked Data):**
 
-```bash
-ng serve
-```
+- Attractive product cards visualization.
+- Visual indicators for low stock products.
+- Dashboard with quick statistics (total, low stock, in stock).
+- Search and filter functionality (by low stock).
+- Add new products via a modal with a blurred background.
+- Edit existing products via modal.
+- Delete products with a confirmation modal.
+- Responsive interface, adaptable to different screen sizes.
+- Modern dark theme.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 📸 Screenshot
 
-## Code scaffolding
+![Stock Control Screenshot](assets/images/screenshot.png)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Replace the image above with a screenshot of your running project. To do this:
 
-```bash
-ng generate component component-name
-```
+1.  Run the application with `ng serve`.
+2.  Open the browser and capture a screenshot of the main interface (the product list in dark theme is a good choice).
+3.  Save the image in a folder, for example, `assets/images` in the root of your project.
+4.  Make sure the file name in the markdown markup above (`assets/images/screenshot.png`) matches the name of the file you saved and adjust if necessary.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🚀 Technologies Used
 
-```bash
-ng generate --help
-```
+- **Angular**: Framework for building the Single Page Application.
+- **TypeScript**: Language for development with static typing.
+- **HTML5/CSS3**: Structure and styling of the interface.
+- **Font Awesome**: Icon library.
+- **Mocked Data**: API simulation for CRUD operations in the frontend.
 
-## Building
+## ⚙️ Backend
 
-To build the project run:
+This frontend project was developed to integrate with a backend built in **Java** using the **Spring** framework.
 
-```bash
-ng build
-```
+Backend Repository: https://github.com/pnascimentodev/stock 
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## ▶️ How to Run the Project
 
-## Running unit tests
+Make sure you have Node.js and Angular CLI installed on your machine.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+1.  Clone this repository:
+    ```bash
+    git clone https://github.com/pnascimentodev/stock-front.git
+    ```
+2.  Navigate to the project directory:
+    ```bash
+    cd stock-front
+    ```
+3.  Install dependencies:
+    ```bash
+    npm install
+    # or yarn install
+    ```
+4.  Start the development server:
+    ```bash
+    ng serve
+    ```
+5.  Open your browser at `http://localhost:4200/`.
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 👋 Connect with Me 🐱
+<p align="center">
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/devpnascimento/)
+</p>
+---
