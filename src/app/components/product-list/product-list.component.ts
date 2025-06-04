@@ -438,6 +438,11 @@ export class ProductListComponent implements OnInit {
     return this.products.filter(p => p.quantity > 0).length;
   }
 
+  get allProducts(): number {
+    return this.products.length;
+  }
+
+
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
@@ -445,7 +450,7 @@ export class ProductListComponent implements OnInit {
   }
 
   loadProducts() {
-    this.productService.getLowStockProducts().subscribe(products => {
+    this.productService.getAllProducts().subscribe(products => {
       this.products = products;
       this.applyFilters();
     });

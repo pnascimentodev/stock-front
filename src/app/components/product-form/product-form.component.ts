@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-product-form',
@@ -241,6 +242,8 @@ export class ProductFormComponent implements OnInit {
   @Output() save = new EventEmitter<any>();
   @Output() cancel = new EventEmitter<void>();
 
+  constructor(private productService: ProductService) {}
+
   ngOnInit() {
     if (this.isEditing) {
       this.product = { ...this.product };
@@ -249,7 +252,25 @@ export class ProductFormComponent implements OnInit {
 
   onSubmit() {
     if (this.product.name && this.product.price >= 0 && this.product.quantity >= 0) {
-      this.save.emit(this.product);
+      if (this.isEditing) {
+        this.productService.updateProduct(this.product.id!, this.product).subscribe(
+          (response) => {
+            this.save.emit(response);
+          },
+          (error) => {
+            console.error('Erro ao atualizar produto:', error);
+          }
+        );
+      } else {
+        this.productService.registerProduct(this.product).subscribe(
+          (response) => {
+            this.save.emit(response);
+          },
+          (error) => {
+            console.error('Erro ao registrar produto:', error);
+          }
+        );
+      }
     }
   }
 

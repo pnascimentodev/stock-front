@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface Product {
   id?: number;
@@ -12,52 +13,31 @@ export interface Product {
   providedIn: 'root'
 })
 export class ProductService {
-  private mockProducts: Product[] = [
-    { id: 1, name: 'Notebook Dell XPS', price: 8999.99, quantity: 3 },
-    { id: 2, name: 'Monitor LG 27"', price: 1299.99, quantity: 8 },
-    { id: 3, name: 'Teclado Mecânico', price: 499.99, quantity: 2 },
-    { id: 4, name: 'Mouse Gamer', price: 299.99, quantity: 15 },
-    { id: 5, name: 'Headset Bluetooth', price: 399.99, quantity: 4 },
-    { id: 6, name: 'SSD 1TB', price: 599.99, quantity: 6 },
-    { id: 7, name: 'Memória RAM 16GB', price: 349.99, quantity: 1 },
-    { id: 8, name: 'Placa de Vídeo RTX 3060', price: 2499.99, quantity: 0 }
-  ];
+  private apiUrl = 'http://localhost:8080/api/products';
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   registerProduct(product: Product): Observable<Product> {
-    const newProduct = {
-      ...product,
-      id: this.mockProducts.length + 1
-    };
-    this.mockProducts.push(newProduct);
-    return of(newProduct);
+    return this.http.post<Product>(this.apiUrl, product);
   }
 
   updateProduct(id: number, product: Product): Observable<Product> {
-    const index = this.mockProducts.findIndex(p => p.id === id);
-    if (index !== -1) {
-      const updatedProduct = { ...product, id };
-      this.mockProducts[index] = updatedProduct;
-      return of(updatedProduct);
-    }
-    return of(product);
+    return this.http.put<Product>(`${this.apiUrl}/update/${id}`, product);
+  }
+
+  getAllProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(`${this.apiUrl}/all`);
   }
 
   getProduct(id: number): Observable<Product> {
-    const product = this.mockProducts.find(p => p.id === id);
-    return of(product!);
+    return this.http.get<Product>(`${this.apiUrl}/${id}`);
   }
 
   getLowStockProducts(): Observable<Product[]> {
-    return of(this.mockProducts);
+    return this.http.get<Product[]>(`${this.apiUrl}/low-stock`);
   }
 
   deleteProduct(id: number): Observable<void> {
-    const index = this.mockProducts.findIndex(p => p.id === id);
-    if (index !== -1) {
-      this.mockProducts.splice(index, 1);
-    }
-    return of(void 0);
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 } 
