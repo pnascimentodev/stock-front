@@ -1,0 +1,134 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h1>Criar Conta</h1>
+      <p>Registre-se para gerenciar seu estoque</p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="auth-form">
+      @if(registerError) {
+        <div class="error-alert">
+          <i class="fas fa-exclamation-circle"></i>
+          {{ registerError }}
+        </div>
+      }
+
+      <div class="form-group">
+        <label for="name">Nome Completo</label>
+        <input 
+          type="text" 
+          id="name" 
+          formControlName="name" 
+          placeholder="Digite seu nome completo"
+          [class.error]="registerForm.get('name')?.invalid && registerForm.get('name')?.touched"
+        >
+        <div class="error-message" *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched">
+          <span *ngIf="registerForm.get('name')?.errors?.['required']">Nome é obrigatório</span>
+          <span *ngIf="registerForm.get('name')?.errors?.['minlength']">Nome deve ter no mínimo 3 caracteres</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">E-mail</label>
+        <input 
+          type="email" 
+          id="email" 
+          formControlName="email" 
+          placeholder="Digite seu e-mail"
+          [class.error]="registerForm.get('email')?.invalid && registerForm.get('email')?.touched"
+        >
+        <div class="error-message" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+          <span *ngIf="registerForm.get('email')?.errors?.['required']">E-mail é obrigatório</span>
+          <span *ngIf="registerForm.get('email')?.errors?.['email']">E-mail inválido</span>
+        </div>
+      </div>      <div class="form-group">
+        <label for="password">Senha</label>
+        <div class="password-input-container">
+          <input 
+            [type]="showPassword ? 'text' : 'password'" 
+            id="password" 
+            formControlName="password"
+            placeholder="Digite sua senha"
+            [class.error]="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+          >
+          <button type="button" class="toggle-password" (click)="togglePasswordVisibility()">
+            <i class="fas" [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword"></i>
+          </button>
+        </div>
+        <div class="error-message" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+          <span *ngIf="registerForm.get('password')?.errors?.['required']">Senha é obrigatória</span>
+          <span *ngIf="registerForm.get('password')?.errors?.['minlength']">Senha deve ter no mínimo 6 caracteres</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirmar Senha</label>
+        <div class="password-input-container">
+          <input 
+            [type]="showConfirmPassword ? 'text' : 'password'" 
+            id="confirmPassword" 
+            formControlName="confirmPassword"
+            placeholder="Confirme sua senha"
+            [class.error]="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched"
+          >
+          <button type="button" class="toggle-password" (click)="toggleConfirmPasswordVisibility()">
+            <i class="fas" [class.fa-eye]="!showConfirmPassword" [class.fa-eye-slash]="showConfirmPassword"></i>
+          </button>
+        </div><div class="error-message" *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
+          <span *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">Confirmação de senha é obrigatória</span>
+          <span *ngIf="registerForm.get('confirmPassword')?.errors?.['mismatch']">As senhas não coincidem</span>
+        </div>
+      </div>
+
+      <div class="form-group role-selection">
+        <label>Tipo de Usuário</label>
+        <div class="radio-group">
+          <div class="radio-option">
+            <input 
+              type="radio" 
+              id="role-user" 
+              formControlName="role" 
+              value="user"
+              [class.error]="registerForm.get('role')?.invalid && registerForm.get('role')?.touched"
+            >
+            <label for="role-user">Usuário</label>
+          </div>
+          
+          <div class="radio-option">
+            <input 
+              type="radio" 
+              id="role-manager" 
+              formControlName="role" 
+              value="manager"
+              [class.error]="registerForm.get('role')?.invalid && registerForm.get('role')?.touched"
+            >
+            <label for="role-manager">Gerente</label>
+          </div>
+          
+          <div class="radio-option">
+            <input 
+              type="radio" 
+              id="role-admin" 
+              formControlName="role" 
+              value="admin"
+              [class.error]="registerForm.get('role')?.invalid && registerForm.get('role')?.touched"
+            >
+            <label for="role-admin">Admin</label>
+          </div>
+        </div>
+        <div class="error-message" *ngIf="registerForm.get('role')?.invalid && registerForm.get('role')?.touched">
+          <span *ngIf="registerForm.get('role')?.errors?.['required']">Selecione um tipo de usuário</span>
+        </div>
+      </div>
+
+      <button type="submit" class="btn-primary" [disabled]="isLoading">
+        <span *ngIf="!isLoading">Registrar</span>
+        <span *ngIf="isLoading">Carregando...</span>
+      </button>
+    </form>
+
+    <div class="auth-footer">
+      <p>Já tem uma conta? <a routerLink="/auth/login">Faça login</a></p>
+    </div>
+  </div>
+</div>
